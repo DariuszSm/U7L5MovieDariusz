@@ -27,6 +27,10 @@ public class Person {
         this.name = name;
     }
 
+    public ArrayList<Movie> moviesStarred() {
+        return starringMovies;
+    }
+
     public void castInMovie(Movie movie) {
         starringMovies.add(movie);
     }
