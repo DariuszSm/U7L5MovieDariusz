@@ -11,18 +11,21 @@ public class MovieDatabaseBuilder {
         try {
             File movieData = new File(fileName);
             Scanner reader = new Scanner(movieData);
+            ArrayList<Person> actors = new ArrayList<Person>();
+            int moviesParsed = 0;
             while (reader.hasNextLine()) {
                 String line = reader.nextLine();
                 String[] data = line.split("---");
                 if (data.length > 1) {
-                    SimpleMovie s = new SimpleMovie(data[0], data[1]);
+                    SimpleMovie s = new SimpleMovie(data[0], data[1], actors);
                     ArrayList<Person> movieActors = s.getActors();
                     for (int i = 0; i < movieActors.size(); i++) {
                         movieActors.get(i).castInSimpleMovie(s);
                     }
                     movies.add(s);
                 }
-
+                moviesParsed++;
+                System.out.println((double)moviesParsed/135828);
             }
         }
         catch (FileNotFoundException noFile) {

@@ -40,33 +40,26 @@ public class Baconize {
         do {
             // search all direct actors
             for (Person actor : actors) {
+                System.out.println("Movies starred by " + actor + ": " + actor.simpleMoviesStarred().size());
                 // search all movies the actors are starred in
                 for (SimpleMovie movie : actor.simpleMoviesStarred()) {
                     ArrayList<Person> movieActors = movie.getActors();
                     // search all actors from that movie
                     for (Person mutualPerson : movieActors) {
-                        // search through all of the actors from starting loop again
-                        for (int i = 0; i < actors.size(); i++) {
-                            if (mutualPerson.getBaconNumber() != null || mutualPerson.getName().equals(actors.get(i).getName())) {
-                                // skip the mutual actor
-                                break;
-                            }
-                            if (i == actors.size()-1) {
-                                mutualActors.add(mutualPerson);
-                            }
-                        }
+                        if (mutualPerson.getBaconNumber() != null) {continue;}
+                        mutualActors.add(mutualPerson);
                     }
                 }
             }
+            actors = new ArrayList<Person>();
 
             for (Person mutActor : mutualActors) {
                 mutActor.setBacon(baconNum);
-                System.out.println(mutActor);
+                actors.add(mutActor);
             }
             baconNum++;
-            System.out.println(baconNum);
             s.nextLine();
-            actors = mutualActors;
+
             mutualActors = new ArrayList<Person>();
         } while (!isAllBacon(movies));
         System.out.println("done");
