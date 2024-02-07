@@ -51,7 +51,7 @@ public class Baconize {
                     // search all actors from that movie
                     for (Person mutualPerson : movieActors) {
                         if (mutualPerson.getBaconNumber() != null) {continue;}
-                        System.out.println("Movies starred by " + mutualPerson + ": " + mutualPerson.simpleMoviesStarred().size());
+                        // System.out.println("Movies starred by " + mutualPerson + ": " + mutualPerson.simpleMoviesStarred().size());
                         mutualActors.add(mutualPerson);
                         mutualPerson.setBaconPerson(actor);
                         mutualPerson.setBaconMovieLink(movie);
@@ -67,12 +67,10 @@ public class Baconize {
             }
             baconNum++;
             percentNoBaconCast = howManyNoBacon(movies);
-            System.out.println("That was bacon " + (baconNum-2) + "!\nNo bacon: " + (int)(percentNoBaconCast * 10000) + "%");
-            System.out.println((double)actorsNummd/actorsAmnt);
-            s.nextLine();
+            System.out.println("Processed bacon number " + (baconNum-2) + "!\nNo bacon: " + (int)(percentNoBaconCast * 100) + "%");
 
             mutualActors = new ArrayList<Person>();
-        } while (percentNoBaconCast > 0);
+        } while (!actors.isEmpty());
         System.out.println("done");
     }
 }
