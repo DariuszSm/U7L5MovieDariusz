@@ -9,7 +9,7 @@ public class Main {
         }
         System.out.println("Number of movies: " + movies.size());
 
-        Baconize.baconize(movies);
+        Baconize.baconize(movies, 1600000);
 
     }
 }

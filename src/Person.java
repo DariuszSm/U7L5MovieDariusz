@@ -6,6 +6,8 @@ public class Person {
     String role;
     String name;
     Integer baconNumber;
+    Person baconPerson;
+    SimpleMovie baconMovieLink;
 
     public Person(String name, String role) {
         starringMovies = new ArrayList<Movie>();
@@ -40,6 +42,8 @@ public class Person {
     public Integer getBaconNumber() {
         return baconNumber;
     }
+    public void setBaconPerson(Person baconPerson) {this.baconPerson = baconPerson;}
+    public void setBaconMovieLink(SimpleMovie baconMovie) {baconMovieLink = baconMovie;}
 
     public ArrayList<Movie> moviesStarred() {
         return starringMovies;
