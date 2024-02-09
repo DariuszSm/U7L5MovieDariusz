@@ -391,12 +391,104 @@ public class MovieCollection
 
     private void listHighestRated()
     {
+        // arraylist to hold search results
+        ArrayList<Movie> results = new ArrayList<Movie>();
 
+        results.add(movies.get(0));
+
+        // search through ALL movies in collection
+        for (int i = 1; i < movies.size(); i++)
+        {
+            int f = 0;
+            while (f != results.size() && movies.get(i).getUserRating() <= results.get(f).getUserRating()) {
+                f++;
+            }
+            System.out.println("done");
+            if (f == results.size()) {
+                results.add(movies.get(i));
+            } else {
+                results.add(f, movies.get(i));
+            }
+            if (results.size() > 50) {
+                results.remove(results.size()-1);
+            }
+        }
+
+
+        // now, display them all to the user
+        for (int i = 0; i < results.size(); i++)
+        {
+            String title = results.get(i).getTitle();
+
+            // this will print index 0 as choice 1 in the results list; better for user!
+            int choiceNum = i + 1;
+
+            System.out.println("" + choiceNum + ". " + title);
+        }
+
+        System.out.println("Which movie would you like to learn more about?");
+        System.out.print("Enter number: ");
+
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+
+        Movie selectedMovie = results.get(choice - 1);
+
+        displayMovieInfo(selectedMovie);
+
+        System.out.println("\n ** Press Enter to Return to Main Menu **");
+        scanner.nextLine();
     }
 
     private void listHighestRevenue()
     {
+        // arraylist to hold search results
+        ArrayList<Movie> results = new ArrayList<Movie>();
 
+        results.add(movies.get(0));
+
+        // search through ALL movies in collection
+        for (int i = 1; i < movies.size(); i++)
+        {
+            int f = 0;
+            while (f != results.size() && movies.get(i).getRevenue() <= results.get(f).getRevenue()) {
+                f++;
+            }
+            System.out.println("done");
+            if (f == results.size()) {
+                results.add(movies.get(i));
+            } else {
+                results.add(f, movies.get(i));
+            }
+            if (results.size() > 50) {
+                results.remove(results.size()-1);
+            }
+        }
+
+
+        // now, display them all to the user
+        for (int i = 0; i < results.size(); i++)
+        {
+            String title = results.get(i).getTitle();
+
+            // this will print index 0 as choice 1 in the results list; better for user!
+            int choiceNum = i + 1;
+
+            System.out.println("" + choiceNum + ". " + title);
+        }
+
+        System.out.println("Which movie would you like to learn more about?");
+        System.out.print("Enter number: ");
+
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+
+        Movie selectedMovie = results.get(choice - 1);
+
+        displayMovieInfo(selectedMovie);
+
+        System.out.println("\n ** Press Enter to Return to Main Menu **");
+        scanner.nextLine();
     }
 
     private void importMovieList(String fileName)
