@@ -3,21 +3,26 @@ import java.util.Scanner;
 
 public class Baconize {
 
-    private static Person getBacon(ArrayList<SimpleMovie> movies) {
+    public static Person getActor(ArrayList<SimpleMovie> movies, String actorName) {
         for (int i = 0; i < movies.size(); i++) {
             ArrayList<Person> movieActors = movies.get(i).getActors();
             for (int f = 0; f < movieActors.size(); f++) {
                 Person actor = movieActors.get(f);
-                if (actor.getName().equals("Kevin Bacon")) {
-                    System.out.println(actor);
+                if (actor.getName().equals(actorName)) {
+                    // System.out.println(actor);
                     return actor;
                 }
             }
         }
-        System.out.println("blehhhh");
+        System.out.println("No Bacon!!!");
         return null;
     }
 
+    /**
+     * Checks how many casts have a bacon number (not individual actors, rather all casted roles in a movie)
+     * @param movies
+     * @return
+     */
     private static double howManyNoBacon(ArrayList<SimpleMovie> movies) {
         int noBacon = 0;
         int allCast = 0;
@@ -32,16 +37,19 @@ public class Baconize {
         return (double)noBacon/allCast;
     }
 
-    public static void baconize(ArrayList<SimpleMovie> movies, int actorsAmnt) {
+    /**
+     * Assigns a bacon number to all actors in the movies list
+     * @param movies List of movies to baconize all of its actors in
+     */
+    public static void baconize(ArrayList<SimpleMovie> movies) {
         Scanner s = new Scanner(System.in);
-        Person theOneAndOnly = getBacon(movies);
+        Person theOneAndOnly = getActor(movies, "Kevin Bacon");
         theOneAndOnly.setBacon(0);
         ArrayList<Person> actors = new ArrayList<Person>();
         actors.add(theOneAndOnly);
         ArrayList<Person> mutualActors = new ArrayList<Person>();
         int baconNum = 1;
         double percentNoBaconCast;
-        int actorsNummd = 0;
         do {
             // search all direct actors
             for (Person actor : actors) {
@@ -55,12 +63,12 @@ public class Baconize {
                         mutualActors.add(mutualPerson);
                         mutualPerson.setBaconPerson(actor);
                         mutualPerson.setBaconMovieLink(movie);
-                        actorsNummd++;
                     }
                 }
             }
-            actors = new ArrayList<Person>();
 
+            // since all actors in the actors array have been searched, clear the array and fill in all mutual actors
+            actors = new ArrayList<Person>();
             for (Person mutActor : mutualActors) {
                 mutActor.setBacon(baconNum);
                 actors.add(mutActor);

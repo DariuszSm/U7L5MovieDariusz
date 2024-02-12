@@ -27,7 +27,7 @@ public class MovieDatabaseBuilder {
                     movies.add(s);
                 }
                 moviesParsed++;
-                System.out.println((double)moviesParsed/135828);
+                //System.out.println((double)moviesParsed/135828);
             }
             // makes a new arraylist based off the actors from the hashmap
             actorsList = new ArrayList<Person>(actors.values());

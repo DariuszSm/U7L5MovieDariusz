@@ -214,7 +214,7 @@ public class MovieCollection
         // search through ALL movies in collection
         for (Person person : people)
         {
-            if (!person.role.equals("Actor")) {
+            if (!person.getRole().equals("Actor")) {
                 continue;
             }
             String name = person.getName().toLowerCase();

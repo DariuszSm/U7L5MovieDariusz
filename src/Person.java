@@ -1,13 +1,13 @@
 import java.util.ArrayList;
 
 public class Person {
-    ArrayList<Movie> starringMovies;
-    ArrayList<SimpleMovie> starringSimpleMovies;
-    String role;
-    String name;
-    Integer baconNumber;
-    Person baconPerson;
-    SimpleMovie baconMovieLink;
+    private ArrayList<Movie> starringMovies;
+    private ArrayList<SimpleMovie> starringSimpleMovies;
+    private String role;
+    private String name;
+    private Integer baconNumber;
+    private Person baconPerson;
+    private SimpleMovie baconMovieLink;
 
     public Person(String name, String role) {
         starringMovies = new ArrayList<Movie>();
@@ -43,20 +43,18 @@ public class Person {
         return baconNumber;
     }
     public void setBaconPerson(Person baconPerson) {this.baconPerson = baconPerson;}
+    public Person getBaconPerson() {return baconPerson;}
     public void setBaconMovieLink(SimpleMovie baconMovie) {baconMovieLink = baconMovie;}
-
+    public SimpleMovie getBaconMovieLink() {return baconMovieLink;}
     public ArrayList<Movie> moviesStarred() {
         return starringMovies;
     }
-
     public ArrayList<SimpleMovie> simpleMoviesStarred() {
         return starringSimpleMovies;
     }
-
     public void castInMovie(Movie movie) {
         starringMovies.add(movie);
     }
-
     public void castInSimpleMovie(SimpleMovie movie) {
         starringSimpleMovies.add(movie);
     }
