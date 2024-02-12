@@ -1,7 +1,30 @@
+import java.io.File;
+import java.io.IOException;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
+
+    public static void writeToActorCache(ArrayList<Person> actors, File actorCache){
+        try {
+            FileWriter actorWriter = new FileWriter(actorCache);
+            for (Person actor : actors) {
+                String actorString = "";
+                actorString += actor.getName() + "!^!";
+                actorString += actor.getBaconNumber() + "!^!";
+                actorString += actor.getBaconPerson().getName() + "!^!";
+                actorString += actor.getBaconMovieLink().getTitle() + "\n";
+                actorWriter.write(actorString);
+            }
+            System.out.println("Successfully written!");
+            actorWriter.close();
+        } catch (IOException e) {
+            System.out.println("An error occurred with writing to the cached actors file.");
+        }
+    }
+
+
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
 
@@ -14,6 +37,18 @@ public class Main {
 
         // baconizes all actors (assigns bacon numbers and associated movies and actors)
         Baconize.baconize(movies);
+
+        try {
+            File actorCache = new File("actorCache.txt");
+
+            if (actorCache.createNewFile()) {
+                writeToActorCache(masterActorsList, actorCache);
+            } else {
+                System.out.println("Cache already exists!");
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred with reading the cached actors file.");
+        }
 
         System.out.println("Which actor do you want to find connections to Kevin Bacon with?: ");
         String wantedActorInput = s.nextLine();
