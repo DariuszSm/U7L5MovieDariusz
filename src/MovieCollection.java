@@ -403,7 +403,6 @@ public class MovieCollection
             while (f != results.size() && movies.get(i).getUserRating() <= results.get(f).getUserRating()) {
                 f++;
             }
-            System.out.println("done");
             if (f == results.size()) {
                 results.add(movies.get(i));
             } else {
@@ -454,7 +453,6 @@ public class MovieCollection
             while (f != results.size() && movies.get(i).getRevenue() <= results.get(f).getRevenue()) {
                 f++;
             }
-            System.out.println("done");
             if (f == results.size()) {
                 results.add(movies.get(i));
             } else {
